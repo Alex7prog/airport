@@ -1,4 +1,4 @@
-// Search flight - React + Redux
+// Search flight - React + Redux + Router
 
 import React from 'react';
 import ReactDOM from 'react-dom';

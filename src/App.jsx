@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import SearchFlight from './search/components/SearchFlight';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import SearchFlight from './search/components/searchFlight/SearchFlight';
 
 const App = () => {
   return (

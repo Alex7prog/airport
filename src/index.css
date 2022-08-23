@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body,
@@ -174,7 +174,7 @@ a {
   padding: 4px;
 }
 .search-result__calendar__date .calendar-ico i {
-  font-size: 32px;
+  font-size: 28px;
 }
 .search-result__calendar__date .calendar-ico input {
   font-size: 32px;
@@ -242,6 +242,7 @@ a {
 .search-result__table tbody td:first-child {
   text-align: center;
 }
+
 .search-result__table tbody td:first-child span {
   color: #63c745;
   font-weight: 700;

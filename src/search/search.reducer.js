@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const searchReducer = (state = initialState, action) => {
-  // console.log('state: 1', state);
   switch (action.type) {
     case SEARCH_LIST_RECIEVED:
       return {

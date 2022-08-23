@@ -1,0 +1,29 @@
+.search-result__content {
+  padding-top: 35px;
+  background-color: #fff;
+}
+
+.search-result__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    color: #95989a;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+
+    th {
+      padding: 12px;
+    }
+
+    th:first-child {
+      text-align: center;
+    }
+  }
+
+  tbody {
+    color: #212529;
+    font-size: 18px;
+  }
+}
