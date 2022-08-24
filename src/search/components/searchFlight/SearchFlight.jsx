@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import moment from 'moment';
 
 import * as searchActions from '../../search.actions';
@@ -10,21 +11,26 @@ import SearchBar from '../searchBar/SearchBar';
 import SearchNavigation from '../searchNavigation/SearchNavigation';
 import SearchDateSelector from '../searchDateSelector/SearchDateSelector';
 import SearchResultsTable from '../searchResultsTable/SearchResultsTable';
-
+import { parseUrl } from '../../../utils/utils';
 import './search-flight.scss';
 
 const SearchFlight = ({ searchList, getSearchList }) => {
-  const currentDate = new Date();
+  const url = parseUrl(useLocation().pathname.concat(useLocation().search));
+  const startLoadParams = {
+    path: url.pathname || '/departures',
+    date: url.date || moment(new Date()).format('DD-MM-YYYY'),
+    search: url.search || '',
+  };
 
-  const [flightType, setFlightType] = useState('/departures');
-  const [flightDate, setFlightDate] = useState(moment(currentDate).format('DD-MM-YYYY'));
-  const [flightSearch, setFlightSearch] = useState('');
+  const [flightType, setFlightType] = useState(startLoadParams.path);
+  const [flightDate, setFlightDate] = useState(startLoadParams.date);
+  const [flightSearch, setFlightSearch] = useState(startLoadParams.search);
 
   const handleFlightType = (type) => {
     setFlightType(type);
   };
 
-  const handleParametresSearch = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
 
@@ -36,26 +42,27 @@ const SearchFlight = ({ searchList, getSearchList }) => {
     setFlightSearch(formData.search);
   };
 
-  const handleDateSearch = (e) => {
+  const handleDateSelect = (e) => {
     const date = new Date(e.target.value);
     setFlightDate(moment(date).format('DD-MM-YYYY'));
     getSearchList(date);
   };
 
-  const handleThreeDays = (e) => {
+  const handleThreeDaysSelect = (e) => {
     const date = new Date(e.target.closest('.three-days').dataset.date);
     setFlightDate(moment(date).format('DD-MM-YYYY'));
     getSearchList(date);
   };
 
   useEffect(() => {
-    getSearchList(currentDate);
+    const startDate = moment(flightDate, 'DD-MM-YYYY').format('YYYY-MM-DD');
+    getSearchList(new Date(startDate));
   }, []);
 
   return (
     <section className="search-flight">
       <div className="search-page">
-        <SearchBar onParametresSearch={handleParametresSearch} />
+        <SearchBar searchHandle={handleSearch} searchParam={flightSearch} />
 
         <div className="search-result">
           <Redirect to={`${flightType}?date=${flightDate}${flightSearch && `&search=${flightSearch}`}`} />
@@ -67,7 +74,7 @@ const SearchFlight = ({ searchList, getSearchList }) => {
             <SearchNavigation selectFlightType={handleFlightType} />
           </Route>
 
-          <SearchDateSelector dateSearchInput={handleDateSearch} selectThreeDays={handleThreeDays} />
+          <SearchDateSelector selectDate={handleDateSelect} selectThreeDays={handleThreeDaysSelect} />
           {searchList && <SearchResultsTable searchList={searchList.body} />}
         </div>
       </div>

@@ -4,7 +4,7 @@ import moment from 'moment';
 import { parseUrl } from '../../../utils/utils';
 import './search-date-selector.scss';
 
-const SearchDateSelector = ({ dateSearchInput, selectThreeDays }) => {
+const SearchDateSelector = ({ selectDate, selectThreeDays }) => {
   const url = parseUrl(useLocation().pathname.concat(useLocation().search));
 
   const yesterday = moment(new Date()).subtract(1, 'd');
@@ -18,7 +18,7 @@ const SearchDateSelector = ({ dateSearchInput, selectThreeDays }) => {
         <div className="calendar-ico" id="search-date">
           <i className="fas fa-calendar-days"></i>
           <form className="event-form">
-            <input className="search-calendar_datapicker" type="date" onInput={dateSearchInput} />
+            <input className="search-calendar_datapicker" type="date" onInput={selectDate} />
           </form>
         </div>
       </div>

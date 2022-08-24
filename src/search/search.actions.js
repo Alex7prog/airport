@@ -2,7 +2,6 @@ import * as searchGateway from './searchGateway';
 
 export const SEARCH_LIST_RECIEVED = 'SEARCH_LIST_RECIEVED';
 
-// action
 export const searchListRecieved = (searchList) => {
   const action = {
     type: SEARCH_LIST_RECIEVED,
@@ -14,7 +13,6 @@ export const searchListRecieved = (searchList) => {
   return action;
 };
 
-// async action
 export const getSearchList = (date) => {
   const thunkAction = function (dispatch) {
     searchGateway.fetchSearchList(date).then((searchList) => {

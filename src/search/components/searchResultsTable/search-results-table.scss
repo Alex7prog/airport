@@ -8,10 +8,10 @@
   border-collapse: collapse;
 
   thead {
-    color: #95989a;
     font-size: 16px;
     font-weight: 600;
     text-align: left;
+    color: #95989a;
 
     th {
       padding: 12px;
@@ -23,7 +23,7 @@
   }
 
   tbody {
-    color: #212529;
     font-size: 18px;
+    color: #212529;
   }
 }
