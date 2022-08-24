@@ -16,8 +16,9 @@ import './search-flight.scss';
 
 const SearchFlight = ({ searchList, getSearchList }) => {
   const url = parseUrl(useLocation().pathname.concat(useLocation().search));
+  console.log('url: ', url);
   const startLoadParams = {
-    path: url.pathname || '/departures',
+    path: url.pathname === '/' ? '/departures' : url.pathname,
     date: url.date || moment(new Date()).format('DD-MM-YYYY'),
     search: url.search || '',
   };
