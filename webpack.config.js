@@ -10,7 +10,6 @@ module.exports = (env, argv) => {
     entry: './src/index.jsx',
     output: {
       filename: 'bundle.js',
-      path: path.resolve(__dirname, 'review_build'),
       publicPath: '/',
     },
     module: {
@@ -22,11 +21,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /.s?css$/,
-          use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-            'sass-loader',
-          ],
+          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
         },
       ],
     },
@@ -56,7 +51,7 @@ module.exports = (env, argv) => {
     config.plugins.push(
       new MiniCssExtractPlugin({
         filename: '[name].css',
-      }),
+      })
     );
   }
 
