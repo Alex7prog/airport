@@ -1,6 +1,5 @@
 [build]
 command = "npm run build"
-publish = "/review_build"
 base = "/"
 
 [[redirects]]
